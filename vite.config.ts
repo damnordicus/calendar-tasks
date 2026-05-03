@@ -2,14 +2,19 @@ import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
+import { existsSync, readFileSync } from 'fs';
+
+const certKey = './localhost+1-key.pem';
+const certFile = './localhost+1.pem';
+const localHttps =
+	existsSync(certKey) && existsSync(certFile)
+		? { key: readFileSync(certKey), cert: readFileSync(certFile) }
+		: undefined;
 
 export default defineConfig({
 	server: {
-		https: {
-	      key: readFileSync('./localhost+1-key.pem'),
-	      cert: readFileSync('./localhost+1.pem'),
-	    },
-	    host: true, // exposes on LAN, not just localhost
+		https: localHttps,
+		host: true,
 	},
 	plugins: [
 		tailwindcss(),
