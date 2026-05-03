@@ -4,6 +4,13 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	server: {
+		https: {
+	      key: readFileSync('./localhost+1-key.pem'),
+	      cert: readFileSync('./localhost+1.pem'),
+	    },
+	    host: true, // exposes on LAN, not just localhost
+	},
 	plugins: [
 		tailwindcss(),
 		sveltekit(),
