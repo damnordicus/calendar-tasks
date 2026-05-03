@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@theme {
+	--color-slate-750: #1c2536;
+	--color-slate-950: #020617;
+}
+
+/* Color scheme */
+:root {
+	color-scheme: dark;
+}
+
+/* Native-feel scrollbar */
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Safe area insets for mobile */
+body {
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Custom time/date input styling for dark theme */
+input[type='time'],
+input[type='date'] {
+	color-scheme: dark;
+}
